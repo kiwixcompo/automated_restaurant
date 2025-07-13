@@ -74,31 +74,20 @@
 							$error = '';
 						 	if (isset($_POST['continue_order'])) {
 
-						 		/*if (!empty($_POST['food_check']) && !empty($_POST['soup_check']) && !empty($_POST['drink_check']) && !empty($_POST['dessert_check'])) {*/
-						 		
-						 		$food = $_POST['food_check'];
-						 		$soup = $_POST['soup_check'];
-						 		$drink = $_POST['drink_check'];
-						 		$dessert = $_POST['dessert_check'];
-
-						 		$_SESSION['selected_food'] = $food;
-						 		$_SESSION['selected_soup'] = $soup;
-						 		$_SESSION['selected_drink'] = $drink;
-						 		$_SESSION['selected_dessert'] = $dessert;
-						 		
-						 		if (isset($_SESSION['selected_food']) || isset($_SESSION['selected_soup']) || isset($_SESSION['selected_drink']) || isset($_SESSION['selected_dessert'])) {
-						 			
-						 			header('Location: continue_order.php');
-						 		}else{
-						 			$error =  "No item was selected. Can't go to the next page";
-						 		}
-						 		
-						 		/*}else{
-						 			$error = "You need to select at least one item";
-						 		}*/
+						 		$food = isset($_POST['food_check']) ? $_POST['food_check'] : '';
+						 		$soup = isset($_POST['soup_check']) ? $_POST['soup_check'] : '';
+						 		$drink = isset($_POST['drink_check']) ? $_POST['drink_check'] : '';
+						 		$dessert = isset($_POST['dessert_check']) ? $_POST['dessert_check'] : '';
 
 						 		if (empty($food) && empty($soup) && empty($drink) && empty($dessert)) {
 						 			$error = "You need to select at least one item to continue";
+						 		} else {
+						 			$_SESSION['selected_food'] = $food;
+						 			$_SESSION['selected_soup'] = $soup;
+						 			$_SESSION['selected_drink'] = $drink;
+						 			$_SESSION['selected_dessert'] = $dessert;
+						 			header('Location: continue_order.php');
+						 			exit();
 						 		}
 						 	}
 						 		

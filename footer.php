@@ -105,6 +105,26 @@
 
 </script>
 
+<style>
+/* Improve jQuery UI datepicker visibility */
+.ui-datepicker {
+    z-index: 9999 !important;
+    background: #fff !important;
+    border: 2px solid #009879 !important;
+    font-size: 1.1em !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.ui-datepicker-calendar td a {
+    color: #009879 !important;
+    font-weight: bold;
+    background: #e6f9f4 !important;
+    border-radius: 4px;
+}
+.ui-datepicker-calendar td a.ui-state-active {
+    background: #009879 !important;
+    color: #fff !important;
+}
+</style>
 
 </body>
 </html>

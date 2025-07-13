@@ -84,11 +84,45 @@
 				
 				$q->execute();
 
-				} catch (PDOException $e) {
-					$e->getMessage();
+				// Show modal with reservation ID
+				echo '<div id="reservation-modal" title="Reservation Successful" style="display:none;">
+					<div id="reservation-modal-content">
+						<h3>Reservation Successful!</h3>
+						<p>You have successfully reserved a seat.</p>
+						<p><strong>Your reservation ID is: <span id="reservation-id">' . $seat_id . '</span></strong></p>
+						<p>Please keep it safe.</p>
+						<button onclick="printReservation()">Print</button>
+						<button onclick="saveReservationPDF()">Save as PDF</button>
+					</div>
+				</div>';
+				echo '<script>
+				$(function() {
+					$("#reservation-modal").dialog({
+						modal: true,
+						width: 400,
+						close: function() { location.reload(); }
+					});
+				});
+				function printReservation() {
+					var printContents = document.getElementById("reservation-modal-content").innerHTML;
+					var originalContents = document.body.innerHTML;
+					document.body.innerHTML = printContents;
+					window.print();
+					document.body.innerHTML = originalContents;
+					location.reload();
 				}
-				echo "You have successfully reserved a seat and your reservation id is ". $seat_id . "" . ". Please keep it safe" ;
+				function saveReservationPDF() {
+					var printContents = document.getElementById("reservation-modal-content").innerHTML;
+					var myWindow = window.open("", "", "width=600,height=400");
+					myWindow.document.write("<html><head><title>Reservation ID</title></head><body>" + printContents + "</body></html>");
+					myWindow.document.close();
+					myWindow.print();
+				}
+				</script>';
+			} catch (PDOException $e) {
+				$e->getMessage();
 			}
+		}
 
 
 	 ?>
