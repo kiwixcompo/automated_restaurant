@@ -21,7 +21,7 @@ include 'header.php'; ?>
 	      $result->bindValue(':password', $password);
 	      $result->execute();
 
-	      $total = $result->rowCount(1,1);
+	      $total = $result->rowCount();
 
 	    } catch (PDOException $e) {
 	      

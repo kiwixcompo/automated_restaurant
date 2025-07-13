@@ -19,7 +19,7 @@
 
 	 <a href="view_today_reservation.php">Show Today's Reservations Only</a>
 	 <form method="POST" accept-charset="utf-8" name="myform">
-	 <table border="1">
+	 <table border="1" class="styled-table">
 	 	<thead>
 	 		<tr>
 	 			<th>Name</th>
@@ -121,3 +121,35 @@
 			 ?>
 
 <?php include 'includes/footer.php'; ?>
+<style>
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 700px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th, .styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>

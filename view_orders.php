@@ -21,7 +21,7 @@
 					<?php 
 
 						try {
-						    $sql = "SELECT cust_fname, cust_lname, cust_address, cust_phone, food_name, soup_name, drink_name, dessert_name FROM customer_info 
+						    $sql = "SELECT customer_info.id, cust_fname, cust_lname, cust_address, cust_phone, food_name, soup_name, drink_name, dessert_name FROM customer_info 
 								INNER JOIN food ON food_id = food.id
 								INNER JOIN soup ON soup_id = soup.id
 								INNER JOIN drinks ON drink_id = drinks.id
@@ -34,7 +34,17 @@
 						      $e->getMessage();
 						    }
 						    while($row = $result->fetch()){
-						      $rows[] = array("cust_fname" => $row['cust_fname'], "cust_lname" => $row['cust_lname'], "cust_address" => $row['cust_address'], "cust_phone" =>$row['cust_phone'], "food_name" => $row['food_name'], "soup_name" => $row['soup_name'], "drink_name" => $row['drink_name'], "dessert_name" => $row['dessert_name']);
+						      $rows[] = array(
+						        "cust_id" => $row['id'],
+						        "cust_fname" => $row['cust_fname'],
+						        "cust_lname" => $row['cust_lname'],
+						        "cust_address" => $row['cust_address'],
+						        "cust_phone" =>$row['cust_phone'],
+						        "food_name" => $row['food_name'],
+						        "soup_name" => $row['soup_name'],
+						        "drink_name" => $row['drink_name'],
+						        "dessert_name" => $row['dessert_name']
+						      );
 						    }
 
 						    if (empty($rows)) {
@@ -104,7 +114,7 @@
 										<?php echo htmlspecialchars($items['dessert_name']); ?>
 									</td>
 									<td>
-										<input type="checkbox" name="checkbox[]" value="<?php echo $list['customer_info.id']; ?>" style = "align:center;">
+										<input type="checkbox" name="checkbox[]" value="<?php echo $items['cust_id']; ?>">
 									</td>
 								</tr>
 							<?php endforeach; ?>
